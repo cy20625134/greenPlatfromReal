@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+<!-- 控制台输出-->  
+<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">  
+    <layout class="ch.qos.logback.classic.PatternLayout">  
+        <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>  
+    </layout>  
+</appender>
+<!-- 操作日志 --> 
+<appender name="WORK_BLOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	<file>${LOGPATH}/${LOGPATH_WORK}/logFile.log</file>
+	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+    	<fileNamePattern>${LOGPATH}/${LOGPATH_WORK}/logFile.%d{yyyy-MM-dd}.log</fileNamePattern>
+ 		<maxHistory>365</maxHistory>
+	</rollingPolicy>
+	<encoder>
+		<charset>UTF-8</charset>
+		<pattern>%-20(%d{HH:mm:ss.SSS} [%thread]) %-5level %logger{80} - %msg%n</pattern>
+	</encoder>
+</appender> 	
+<!-- 操作日志 --> 
+<appender name="ERROR_BLOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	<file>${LOGPATH}/${LOGPATH_WORK}/logFile.log</file>
+	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+    	<fileNamePattern>${LOGPATH}/${LOGPATH_WORK}/logFile.%d{yyyy-MM-dd}.log</fileNamePattern>
+ 		<maxHistory>365</maxHistory>
+	</rollingPolicy>
+	<encoder>
+		<charset>UTF-8</charset>
+		<pattern>%-20(%d{HH:mm:ss.SSS} [%thread]) %-5level %logger{80} - %msg%n</pattern>
+	</encoder>
+</appender> 	
+
+<!-- 控制spring日志输出 -->
+<logger name="org.springframework" level="info"></logger>
+<logger name="org.hibernate" level="debug"/>
+<logger name="freemarker" level="info"/>
+<logger name="org.hibernate.SQL" level="debug"/>
+<logger name="org.hibernate.transaction" level="info"/>
+<logger name="com.mchange.v2" level="info"/>
+<logger name="com.sunny.framework.web" level="warn"/>
+<!-- 控制struts2日志输出 -->
+<logger name="com.opensymphony.xwork2" level="off"></logger>
+<logger name="com.googlecode.jsonplugin" level="off"></logger>
+
+<logger name="com.sunny" level="debug" ></logger>
+
+<root level="debug">
+	<appender-ref ref="WORK_BLOG" /><!-- 控制台 -->
+</root>
+</configuration>	
